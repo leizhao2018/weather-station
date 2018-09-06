@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Sep  6 09:24:03 2018
+caculate the average of the direction and speed about the weather station
 
 @author: leizhao 
 """
