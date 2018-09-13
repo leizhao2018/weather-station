@@ -13,10 +13,11 @@ import math
 #########################
 #HARDCODES
 input_dir='/home/jmanning/leizhao/'
-###########################
 weather_sta_file='weatherstation180905.txt'
 times=['18:18:00','18:27:00','18:37:00','18:54:00','18:58:00','19:03:00','19:08:00',
-'19:15:00','19:20:00','19:25:00','19:30:00','19:35:00','19:49:00','19:54:00','19:59:00','20:06:00']
+'19:15:00','19:20:00','19:25:00','19:30:00','19:35:00','19:49:00','19:54:00','19:59:00','20:06:00'] 
+#this is time nodes for moving fans and ajusting three winds speeds.
+###########################
 name=['index','date','time','speed','direction','a','b','d','e','f','g','h','i','j']
 df=read_csv(input_dir+weather_sta_file,names=name)
 time=df['time']
@@ -24,7 +25,7 @@ speed=df['speed']
 direction=df['direction']
 mean_speed=[]
 mean_direction=[]
-index=[0,1,2,4,5,6,8,9,10,12,13,14]
+index=[0,1,2,4,5,6,8,9,10,12,13,14] #we can get the time interval that we need four directions and three speeds from times
 for  j in index:
     m_speed=[]
     ss_direction1,ss_direction2=[],[]
