@@ -62,7 +62,7 @@ s=np.array(mean_speed).reshape(4,3)
 x, y = np.meshgrid(np.arange(0.1, 1.5 , .5), np.arange(0.1,2.0,.5))
 plt.figure()
 plt.title('speed with "H M L" and direction with "E W S N"')
-Q = plt.quiver(x, y, vv*s, uu*s, units='height')
+Q = plt.quiver(x, y, vv*s, uu*s, units='height')    #the angle connection of compass(a1) and math(a2):a2=(np.pi-a1)+k*360
 qk = plt.quiverkey(Q, 0.91 ,0.9, 2, r'$direction E$', labelpos='N',
                    coordinates='figure')
 
