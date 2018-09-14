@@ -40,8 +40,9 @@ for  j in index:
                 else:
                     ss_direction1.append(math.cos(math.pi/180*direction[i]))
                     ss_direction2.append(math.sin(math.pi/180*direction[i]))
-                    m_speed.append(speed[i])
-    mean_speed.append(np.mean(m_speed))
+                    m_speed1.append(speed[i]*math.cos(math.pi/180*direction[i]))
+                    m_speed2.append(speed[i]*math.sin(math.pi/180*direction[i]))
+    mean_speed.append(np.sqrt((np.square(np.mean(m_speed1))+np.square(np.mean(m_speed2)))))
     if np.mean(ss_direction1)>0 and np.mean(ss_direction2)>0:
         mean_direction.append(180/math.pi*math.asin(np.mean(ss_direction2)))
     elif np.mean(ss_direction1)<0 and np.mean(ss_direction2)>0:
