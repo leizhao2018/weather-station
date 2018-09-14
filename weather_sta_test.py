@@ -62,7 +62,7 @@ s=np.array(mean_speed).reshape(4,3)
 x, y = np.meshgrid(np.arange(0.1, 1.5 , .5), np.arange(0.1,4 ,1))
 plt.figure()
 plt.title('speed with "H M L" and direction with "E W S N"')
-Q = plt.quiver(x, y, uu*s, vv*s, units='width')
+Q = plt.quiver(x, y, vv*s, uu*s, units='width')
 qk = plt.quiverkey(Q, 0.9 ,0.9, 1, r'$2 \frac{m}{s}$', labelpos='E',
                    coordinates='figure')
 
