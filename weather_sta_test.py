@@ -28,34 +28,33 @@ F_from=tm['D_from']
 #'15:24:00','15:29:00','15:36:00','15:41:00','15:46:00','15:51:00','15:54:00','15:59:00','16:04:00','16:04:00']
 #times present the time that remove the location of fan or switch the speed of fan
 name=['index','date','time','speed','direction','a','b','d','e','f','g','h','i','j']
-df=read_csv(input_dir+weather_sta_file,names=name) # this reads data saved by the weather_plots2.py program?
+df=read_csv(input_dir+weather_sta_file,names=name) # the data saved by the weather_plots2.py program
 time=df['time']
 speed=df['speed']
 direction=df['direction']
-u,v,uu,vv,mean_speed,mean_direction=[],[],[],[],[],[] # where "u" is a list of x*y eastward flows and "uu" is reshaped list
-ss_direction=[]
-ss,dd=[],[]
+u,v,mean_speed,mean_direction=[],[],[],[] 
+s,d=[],[]  #s,d present the speed and direction
 for  j in index: # for each of the x * y settings (x speeds at each of the y directions)
-    mean_u,mean_v,u1,v1,m_speed=[],[],[],[],[] # where "u1" and "v1" are the values for one of the x * y settings
+    mean_u,mean_v,mean_p_u,mean_p_v,m_speed=[],[],[],[],[] # where "mean_p_u" and "mean_p_v" are the values for one of the x * y settings
     for i in range(len(time)):
             if t_times[j]<time[i]<=t_times[j+1]:
-                if direction[i]==0: #why do you not include direction=0?
+                if speed[i]==0: #exclude the data that has't the speed data
                    break
                 else:
                     [u1_t,v1_t]=zl.sd2uv(speed[i],direction[i])
-                    u1.append(u1_t)
-                    v1.append(v1_t)
-    mean_u.append(np.mean(u1))
-    mean_v.append(np.mean(v1))
+                    mean_p_u.append(u1_t)
+                    mean_p_v.append(v1_t)
+    mean_u.append(np.mean(mean_p_u))
+    mean_v.append(np.mean(mean_p_v))
     u.append(mean_u[0])
     v.append(mean_v[0])
     [s_t,d_t]=zl.uv2sd(mean_u[0],mean_v[0])
-    ss.append(s_t)
-    dd.append(d_t)
-uu=np.array(u).reshape(4,3)
-vv=np.array(v).reshape(4,3)
-s=np.array(ss).reshape(4,3)
-d=np.array(dd).reshape(4,3)
+    s.append(s_t)
+    d.append(d_t)
+u=np.array(u).reshape(4,3)
+v=np.array(v).reshape(4,3)
+s=np.array(s).reshape(4,3)
+d=np.array(d).reshape(4,3)
 x, y = np.meshgrid(np.arange(0.15, 1.6 , .5), np.arange(0.19,1.8,.5))
 plt.figure()
 plt.title('Weather station test '+Date[0]+' result on speed and direction',fontsize=10)
@@ -78,8 +77,8 @@ plt.annotate(s=F_from[index[9]],xy=(0.02,1.65))
 plt.ylabel('Direction From')
 plt.xlabel('Fan Speed')
 # In order to get the arrows to point in the right direction, we multiply u & v by -1.0 
-Q = plt.quiver(x, y, -uu, -vv, units='height')  #the angle connection of compass(a1) and math(a2):a2=(np.pi-a1)+k*360
-#qk = plt.quiverkey(Q, 0.87 ,0.91, 2, r'$direction W$', labelpos='N', coordinates='figure')# why is this commented out?
+Q = plt.quiver(x, y, -u, -v, units='height')  #the angle connection of compass(a1) and math(a2):a2=(np.pi-a1)+k*360
+qk = plt.quiverkey(Q, 0.87 ,0.91, 2, 'direction 2 m/s', labelpos='N', coordinates='figure')# why is this commented out?
 plt.xticks([])
 plt.yticks([])
 plt.savefig(output_dir+'Weather station test '+Date[0]+' result on speed and direction.png',bbox_inches='tight')
