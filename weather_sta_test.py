@@ -16,7 +16,7 @@ import zlconvertions as zl
 input_dir='/home/jmanning/leizhao/data_file/'
 output_dir='/home/jmanning/leizhao/picture/'
 weather_sta_file='weather-station-output180912.txt'
-Date=['Sep 12,2018']      #Data is the weather station test date in the united station
+Date=['Sep 12,2018']      #Data is the weather station test date in the United Station
 test_times_file='time_remove_fan.txt'
 index=[0,1,2,4,5,7,9,10,11,13,14,15]  #Index of the time interval to which output is required
 ###########################
