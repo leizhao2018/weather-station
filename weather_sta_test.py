@@ -84,4 +84,4 @@ Q = plt.quiver(x, y, -uu, -vv, units='height')  #the angle connection of compass
 #                   coordinates='figure')
 plt.xticks([])
 plt.yticks([])
-plt.savefig(output_dir+'speed with "H M L" and direction with "E W S N".png',bbox_inches='tight')
+plt.savefig(output_dir+'Weather station test '+Date[0]+' result on speed and direction.png',bbox_inches='tight')
